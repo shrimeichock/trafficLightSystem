@@ -1,25 +1,40 @@
-/**
- * Wrapper for traffic light system
- */
 package stateMachine;
 
-public class Context {
+/**
+ * Wrapper for traffic light system
+ * @author meich
+ */
+public class Context implements Runnable{
 	private State currentState;
 	private VehicleLight vehicleLight;
 	private WalkLight walkLight;
 	private boolean isPedestrianWaiting;
-	
-	public Context() {
-        this.currentState = new Operational();
-        this.currentState.stateActions(this);
+    public static boolean running;
+    private int pedestrianFlashCtr;
+//    public static Thread trafficLightWrapper;
+
+    public Context() {
+        this.currentState = null;
         this.vehicleLight = null;
-        this.walkLight = null;
+        this.walkLight = WalkLight.BLANK;
         this.isPedestrianWaiting = false;
-        Thread trafficLightWrapper = new Thread(new WrapperThread(), "Wrapper");
-        trafficLightWrapper.start();
+        this.pedestrianFlashCtr = 7;
+//        trafficLightWrapper = new Thread(new WrapperThread(), "Wrapper");
+//        trafficLightWrapper.start();
+
+        Thread wrapper = new Thread(this, "Wrapper");
+        wrapper.start();
     }
 
-	public void set_state(State s) {
+    public int getPedestrianFlashCtr() {
+        return pedestrianFlashCtr;
+    }
+
+    public void setPedestrianFlashCtr(int pedestrianFlashCtr) {
+        this.pedestrianFlashCtr = pedestrianFlashCtr;
+    }
+
+    public void set_state(State s) {
         currentState = s;
     }
 
@@ -36,21 +51,34 @@ public class Context {
         }
     }
 
+    public boolean isPedestrianWaiting() {
+        return isPedestrianWaiting;
+    }
+
     public void timeout() {
         currentState.timeout(this);
     }
 	
 	public void pedestrianWaiting() {
+        //running = true;
         currentState.pedestrianWaiting(this);
+        //running = false;
+        //notifyAll();
     }
 
     public void signalVehicles(VehicleLight vehicleLight) {
         this.vehicleLight = vehicleLight;
-        System.out.println("Vehicle light: " + vehicleLight.toString());
+        System.out.println(this.vehicleLight.getColour() + "Vehicle light: " + vehicleLight + VehicleLight.reset);
     }
 
     public void signalPedestrians(WalkLight walkLight) {
         this.walkLight = walkLight;
-        System.out.println("Pedestrian signal: " + walkLight.toString());
+        System.out.println(this.walkLight.getColour() + "Pedestrian signal: " + walkLight + WalkLight.reset);
+    }
+
+    @Override
+    public void run() {
+        this.set_state(new Operational());
+        this.currentState.stateActions(this);
     }
 }

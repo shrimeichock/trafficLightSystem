@@ -1,13 +1,11 @@
-/**
- * behavior for when vehicles are enabled
- */
 package stateMachine;
 
 /**
+ * Behavior for when vehicles are enabled
  * @author meich
  *
  */
-public class vehiclesEnabled extends State {
+public class VehiclesEnabled extends State {
 //
 //	public vehiclesEnabled(Context wrapper){
 //		this.stateActions(wrapper);
