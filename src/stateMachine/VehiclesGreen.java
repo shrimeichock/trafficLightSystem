@@ -17,8 +17,14 @@ public class VehiclesGreen extends State {
 		//run timer for 10 seconds
 
 		System.out.println("\n" + wrapper.getCurrentState().name());
-//		wrapper.signalVehicles(VehicleLight.GREEN);
-//		wrapper.setPedestrianWaiting(false);
+		wrapper.signalVehicles(VehicleLight.GREEN);
+		wrapper.setPedestrianWaiting(false);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Done sleeping after 5 seconds");
 	}
 
 	@Override
@@ -30,7 +36,7 @@ public class VehiclesGreen extends State {
 	@Override
 	public void pedestrianWaiting(Context wrapper) {
 		//set is pedestrian waiting to true, should be able to handle while sleeping
-		//wrapper.setPedestrianWaiting(true);
+		wrapper.setPedestrianWaiting(true);
 	}
 
 	@Override

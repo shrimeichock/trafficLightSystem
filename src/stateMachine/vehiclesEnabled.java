@@ -19,7 +19,7 @@ public class vehiclesEnabled extends State {
 		//move to vehicles green state
 
 		System.out.println("\n" + wrapper.getCurrentState().name());
-		//wrapper.signalPedestrians(WalkLight.DONT_WALK);
+		wrapper.signalPedestrians(WalkLight.DONT_WALK);
 		wrapper.set_state(new VehiclesGreen());
 		wrapper.getCurrentState().stateActions(wrapper);
 	}
