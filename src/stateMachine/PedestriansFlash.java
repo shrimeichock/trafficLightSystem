@@ -1,6 +1,6 @@
 package stateMachine;
 
-public class pedestriansFlash extends State {
+public class PedestriansFlash extends State {
     @Override
     String name() {
         return "PEDESTRIANS FLASH";
@@ -34,11 +34,11 @@ public class pedestriansFlash extends State {
             System.out.println("Pedestrian crossing completed, allow cars to pass");
         }else if((ctr & 1) == 0){ //if counter even, flash DON'T_WALK
             wrapper.signalPedestrians(WalkLight.DONT_WALK);
-            wrapper.set_state(new pedestriansFlash());
+            wrapper.set_state(new PedestriansFlash());
             wrapper.getCurrentState().stateActions(wrapper);
         }else{ //if counter off, flash BLANK
             wrapper.signalPedestrians(WalkLight.BLANK);
-            wrapper.set_state(new pedestriansFlash());
+            wrapper.set_state(new PedestriansFlash());
             wrapper.getCurrentState().stateActions(wrapper);
         }
     }

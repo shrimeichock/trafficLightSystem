@@ -1,6 +1,6 @@
 package stateMachine;
 
-public class vehiclesGreenInt extends State {
+public class VehiclesGreenInt extends State {
     @Override
     String name() {
         return "VEHICLES GREEN INT";

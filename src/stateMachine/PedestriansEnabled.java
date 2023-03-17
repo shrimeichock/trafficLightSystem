@@ -1,6 +1,6 @@
 package stateMachine;
 
-public class pedestriansEnabled extends State {
+public class PedestriansEnabled extends State {
     @Override
     String name() {
         return "PEDESTRIANS ENABLED";
@@ -14,7 +14,7 @@ public class pedestriansEnabled extends State {
 
         System.out.println("\n" + wrapper.getCurrentState().name());
         wrapper.signalVehicles(VehicleLight.RED);
-        wrapper.set_state(new pedestrianWalk());
+        wrapper.set_state(new PedestrianWalk());
         wrapper.getCurrentState().stateActions(wrapper);
     }
 }

@@ -45,7 +45,7 @@ public class VehiclesGreen extends State {
 			wrapper.set_state(new VehiclesYellow());
 		}else{
 			System.out.println("Timed out, no pedestrian waiting, continue green");
-			wrapper.set_state(new vehiclesGreenInt());
+			wrapper.set_state(new VehiclesGreenInt());
 		}
 		wrapper.getCurrentState().stateActions(wrapper);
 	}

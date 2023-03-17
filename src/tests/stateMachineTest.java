@@ -1,7 +1,6 @@
 
 package tests;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import stateMachine.Context;
@@ -18,13 +17,13 @@ class stateMachineTest {
 	private static Context context;
 
 	/**
-	 * TODO Add javadoc
+	 * Click 'Pedestrian waiting' button repeatedly with delays
 	 */
 	@Test
 	void test() throws InterruptedException {
 		context = new Context();
 		for(int i=0; i<15; i++){
-			TimeUnit.SECONDS.sleep(4);  //delay
+			TimeUnit.SECONDS.sleep(4);
 			System.out.printf("-----PEDESTRIAN INPUT[%d]-----%n", i);
 			context.pedestrianWaiting();
 		}

@@ -1,6 +1,6 @@
 package stateMachine;
 
-public class pedestrianWalk extends State {
+public class PedestrianWalk extends State {
     @Override
     String name() {
         return "PEDESTRIAN WALK";
@@ -25,7 +25,7 @@ public class pedestrianWalk extends State {
     @Override
     void timeout(Context wrapper) {
         //move to pedestrians flash state
-        wrapper.set_state(new pedestriansFlash());
+        wrapper.set_state(new PedestriansFlash());
         wrapper.getCurrentState().stateActions(wrapper);
     }
 
