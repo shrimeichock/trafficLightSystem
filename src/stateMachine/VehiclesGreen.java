@@ -17,23 +17,11 @@ public class VehiclesGreen extends State {
 		System.out.println("\n" + wrapper.getCurrentState().name());
 		wrapper.signalVehicles(VehicleLight.GREEN);
 		wrapper.setPedestrianWaiting(false);
-//		synchronized(this) {
-//			while (wrapper.running) {
-//				try {
-//					wait();
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//			}
-
-			try {
-				//System.out.println(Thread.currentThread().getName());
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			//notifyAll();
-		//}
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		System.out.println("Light was GREEN for 10 seconds");
 		wrapper.timeout();
 	}

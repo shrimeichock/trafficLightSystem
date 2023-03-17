@@ -17,4 +17,9 @@ public class PedestriansEnabled extends State {
         wrapper.set_state(new PedestrianWalk());
         wrapper.getCurrentState().stateActions(wrapper);
     }
+
+    @Override
+    void pedestrianWaiting(Context wrapper) {
+        //do nothing, already allowing them to walk
+    }
 }

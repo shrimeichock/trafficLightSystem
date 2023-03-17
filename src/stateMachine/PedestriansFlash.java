@@ -30,7 +30,7 @@ public class PedestriansFlash extends State {
         if(ctr == 0){
             wrapper.set_state(new VehiclesEnabled());
             wrapper.getCurrentState().stateActions(wrapper);
-            wrapper.setPedestrianFlashCtr(7);
+            //wrapper.setPedestrianFlashCtr(7);
             System.out.println("Pedestrian crossing completed, allow cars to pass");
         }else if((ctr & 1) == 0){ //if counter even, flash DON'T_WALK
             wrapper.signalPedestrians(WalkLight.DONT_WALK);

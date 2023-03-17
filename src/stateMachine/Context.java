@@ -9,20 +9,17 @@ public class Context implements Runnable{
 	private VehicleLight vehicleLight;
 	private WalkLight walkLight;
 	private boolean isPedestrianWaiting;
-    public static boolean running;
     private int pedestrianFlashCtr;
-//    public static Thread trafficLightWrapper;
+    public Thread wrapper;
 
     public Context() {
         this.currentState = null;
         this.vehicleLight = null;
         this.walkLight = WalkLight.BLANK;
         this.isPedestrianWaiting = false;
-        this.pedestrianFlashCtr = 7;
-//        trafficLightWrapper = new Thread(new WrapperThread(), "Wrapper");
-//        trafficLightWrapper.start();
+        this.pedestrianFlashCtr = 0;
 
-        Thread wrapper = new Thread(this, "Wrapper");
+        wrapper = new Thread(this, "Wrapper");
         wrapper.start();
     }
 
@@ -60,10 +57,7 @@ public class Context implements Runnable{
     }
 	
 	public void pedestrianWaiting() {
-        //running = true;
         currentState.pedestrianWaiting(this);
-        //running = false;
-        //notifyAll();
     }
 
     public void signalVehicles(VehicleLight vehicleLight) {

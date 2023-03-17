@@ -6,10 +6,6 @@ package stateMachine;
  *
  */
 public class VehiclesEnabled extends State {
-//
-//	public vehiclesEnabled(Context wrapper){
-//		this.stateActions(wrapper);
-//	}
 
 	public void stateActions(Context wrapper) {
 		//print state name
@@ -18,8 +14,10 @@ public class VehiclesEnabled extends State {
 
 		System.out.println("\n" + wrapper.getCurrentState().name());
 		wrapper.signalPedestrians(WalkLight.DONT_WALK);
+		wrapper.setPedestrianFlashCtr(7);
 		wrapper.set_state(new VehiclesGreen());
 		wrapper.getCurrentState().stateActions(wrapper);
+
 	}
 
 	@Override

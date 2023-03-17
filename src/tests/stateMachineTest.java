@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 class stateMachineTest {
 
 	private static Context context;
+	//TODO another test where it is spaced out (goes to Green
 
 	/**
 	 * Click 'Pedestrian waiting' button repeatedly with delays
@@ -23,7 +24,7 @@ class stateMachineTest {
 	void test() throws InterruptedException {
 		context = new Context();
 		for(int i=0; i<15; i++){
-			TimeUnit.SECONDS.sleep(4);
+			TimeUnit.SECONDS.sleep(5);
 			System.out.printf("-----PEDESTRIAN INPUT[%d]-----%n", i);
 			context.pedestrianWaiting();
 		}
