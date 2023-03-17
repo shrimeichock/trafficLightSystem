@@ -1,4 +1,7 @@
-package stateMachine;
+package stateMachine.States;
+
+import stateMachine.Context;
+import stateMachine.WalkLight;
 
 public class PedestrianWalk extends State {
     @Override
@@ -7,7 +10,7 @@ public class PedestrianWalk extends State {
     }
 
     @Override
-    void stateActions(Context wrapper) {
+    public void stateActions(Context wrapper) {
         //print name
         //set pedestrian signal to walk
         //set timer for 15 seconds & timeout
@@ -23,14 +26,14 @@ public class PedestrianWalk extends State {
     }
 
     @Override
-    void timeout(Context wrapper) {
+    public void timeout(Context wrapper) {
         //move to pedestrians flash state
         wrapper.set_state(new PedestriansFlash());
         wrapper.getCurrentState().stateActions(wrapper);
     }
 
     @Override
-    void pedestrianWaiting(Context wrapper) {
+    public void pedestrianWaiting(Context wrapper) {
         //do nothing, already open for pedestrians
     }
 }

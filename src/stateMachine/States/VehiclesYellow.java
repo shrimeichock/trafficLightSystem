@@ -1,4 +1,7 @@
-package stateMachine;
+package stateMachine.States;
+
+import stateMachine.Context;
+import stateMachine.VehicleLight;
 
 public class VehiclesYellow extends State {
     @Override
@@ -7,7 +10,7 @@ public class VehiclesYellow extends State {
     }
 
     @Override
-    void stateActions(Context wrapper) {
+    public void stateActions(Context wrapper) {
         //print name
         //change signal to yellow
         //sleep 3 seconds
@@ -23,14 +26,14 @@ public class VehiclesYellow extends State {
     }
 
     @Override
-    void timeout(Context wrapper) {
+    public void timeout(Context wrapper) {
         //move to pedestrians enabled state
         wrapper.set_state(new PedestriansEnabled());
         wrapper.getCurrentState().stateActions(wrapper);
     }
 
     @Override
-    void pedestrianWaiting(Context wrapper) {
+    public void pedestrianWaiting(Context wrapper) {
         //do nothing, pedestrian already enabled
         //System.out.println("Pedestrian detected IN YELLOW");
 

@@ -1,4 +1,7 @@
-package stateMachine;
+package stateMachine.States;
+
+import stateMachine.Context;
+import stateMachine.VehicleLight;
 
 /**
  * State where light is green for vehicles

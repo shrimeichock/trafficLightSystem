@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 class stateMachineTest {
 
 	private static Context context;
-	//TODO another test where it is spaced out (goes to Green
+	//TODO another test where it is spaced out (goes to Green Int)
 
 	/**
 	 * Click 'Pedestrian waiting' button repeatedly with delays

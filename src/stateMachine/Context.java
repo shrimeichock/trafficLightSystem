@@ -1,5 +1,8 @@
 package stateMachine;
 
+import stateMachine.States.Operational;
+import stateMachine.States.State;
+
 /**
  * Wrapper for traffic light system
  * @author meich

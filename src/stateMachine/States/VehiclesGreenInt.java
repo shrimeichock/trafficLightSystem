@@ -1,4 +1,6 @@
-package stateMachine;
+package stateMachine.States;
+
+import stateMachine.Context;
 
 public class VehiclesGreenInt extends State {
     @Override
@@ -7,7 +9,7 @@ public class VehiclesGreenInt extends State {
     }
 
     @Override
-    void stateActions(Context wrapper) {
+    public void stateActions(Context wrapper) {
         System.out.println("\n" + wrapper.getCurrentState().name());
     }
 

@@ -1,5 +1,7 @@
 
-package stateMachine;
+package stateMachine.States;
+
+import stateMachine.Context;
 
 /**
  * Initial state of traffic light

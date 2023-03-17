@@ -1,4 +1,7 @@
-package stateMachine;
+package stateMachine.States;
+
+import stateMachine.Context;
+import stateMachine.VehicleLight;
 
 public class PedestriansEnabled extends State {
     @Override
@@ -7,7 +10,7 @@ public class PedestriansEnabled extends State {
     }
 
     @Override
-    void stateActions(Context wrapper) {
+    public void stateActions(Context wrapper) {
         //print name
         //set signal vehicles red
         //change to pedestrian walk state
@@ -19,7 +22,7 @@ public class PedestriansEnabled extends State {
     }
 
     @Override
-    void pedestrianWaiting(Context wrapper) {
+    public void pedestrianWaiting(Context wrapper) {
         //do nothing, already allowing them to walk
     }
 }

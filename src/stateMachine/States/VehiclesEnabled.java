@@ -1,4 +1,7 @@
-package stateMachine;
+package stateMachine.States;
+
+import stateMachine.Context;
+import stateMachine.WalkLight;
 
 /**
  * Behavior for when vehicles are enabled
