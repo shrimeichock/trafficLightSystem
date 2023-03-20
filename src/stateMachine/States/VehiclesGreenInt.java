@@ -4,13 +4,14 @@ import stateMachine.Context;
 
 public class VehiclesGreenInt extends State {
     @Override
-    String name() {
+    public String name() {
         return "VEHICLES GREEN INT";
     }
 
     @Override
     public void stateActions(Context wrapper) {
-        System.out.println("\n" + wrapper.getCurrentState().name());
+        //System.out.println("\n" + wrapper.getCurrentState().name());
+        wrapper.printState();
     }
 
     @Override

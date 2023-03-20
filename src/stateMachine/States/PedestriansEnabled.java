@@ -5,7 +5,7 @@ import stateMachine.VehicleLight;
 
 public class PedestriansEnabled extends State {
     @Override
-    String name() {
+    public String name() {
         return "PEDESTRIANS ENABLED";
     }
 
@@ -15,7 +15,8 @@ public class PedestriansEnabled extends State {
         //set signal vehicles red
         //change to pedestrian walk state
 
-        System.out.println("\n" + wrapper.getCurrentState().name());
+        //System.out.println("\n" + wrapper.getCurrentState().name());
+        wrapper.printState();
         wrapper.signalVehicles(VehicleLight.RED);
         wrapper.set_state(new PedestrianWalk());
         wrapper.getCurrentState().stateActions(wrapper);

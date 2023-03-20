@@ -3,6 +3,8 @@ package stateMachine;
 import stateMachine.States.Operational;
 import stateMachine.States.State;
 
+import java.time.LocalTime;
+
 /**
  * Wrapper for traffic light system
  * @author meich
@@ -26,20 +28,22 @@ public class Context implements Runnable{
         wrapper.start();
     }
 
-    public int getPedestrianFlashCtr() {
-        return pedestrianFlashCtr;
-    }
-
-    public void setPedestrianFlashCtr(int pedestrianFlashCtr) {
-        this.pedestrianFlashCtr = pedestrianFlashCtr;
-    }
-
     public void set_state(State s) {
         currentState = s;
     }
 
     public State getCurrentState() {
         return currentState;
+    }
+
+    public void printState(){System.out.println("[" + LocalTime.now() + "] " + this.currentState.name());}
+
+    public int getPedestrianFlashCtr() {
+        return pedestrianFlashCtr;
+    }
+
+    public void setPedestrianFlashCtr(int pedestrianFlashCtr) {
+        this.pedestrianFlashCtr = pedestrianFlashCtr;
     }
 
     public void setPedestrianWaiting(boolean pedestrianWaiting) {
@@ -75,6 +79,7 @@ public class Context implements Runnable{
 
     @Override
     public void run() {
+        System.out.println("|| Starting traffic light system ||");
         this.set_state(new Operational());
         this.currentState.stateActions(this);
     }

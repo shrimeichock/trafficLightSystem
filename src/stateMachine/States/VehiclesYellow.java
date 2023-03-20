@@ -5,7 +5,7 @@ import stateMachine.VehicleLight;
 
 public class VehiclesYellow extends State {
     @Override
-    String name() {
+    public String name() {
         return "VEHICLES YELLOW";
     }
 
@@ -14,7 +14,10 @@ public class VehiclesYellow extends State {
         //print name
         //change signal to yellow
         //sleep 3 seconds
-        System.out.println("\n" + wrapper.getCurrentState().name());
+
+        //System.out.println("\n" + wrapper.getCurrentState().name());
+        wrapper.printState();
+        wrapper.setPedestrianWaiting(false);
         wrapper.signalVehicles(VehicleLight.YELLOW);
         try {
             //System.out.println(Thread.currentThread().getName());

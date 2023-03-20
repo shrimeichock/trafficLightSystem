@@ -3,6 +3,8 @@ package stateMachine.States;
 
 import stateMachine.Context;
 
+import java.time.LocalTime;
+
 /**
  * Initial state of traffic light
  * @author meich
@@ -18,14 +20,13 @@ public class Operational extends State {
 		//Print state name
 		//Set to vehicles enabled state
 
-		System.out.println("|| Starting traffic light system ||");
-		System.out.println("\n" + wrapper.getCurrentState().name());
+		wrapper.printState();
 		wrapper.set_state(new VehiclesEnabled());
 		wrapper.getCurrentState().stateActions(wrapper);
 	}
 
 	@Override
-	String name() {
+	public String name() {
 		return "OPERATIONAL";
 	}
 }

@@ -15,7 +15,8 @@ public class VehiclesEnabled extends State {
 		//signal pedestrians DON'T WALK
 		//move to vehicles green state
 
-		System.out.println("\n" + wrapper.getCurrentState().name());
+		//System.out.println("\n" + wrapper.getCurrentState().name());
+		wrapper.printState();
 		wrapper.signalPedestrians(WalkLight.DONT_WALK);
 		wrapper.setPedestrianFlashCtr(7);
 		wrapper.set_state(new VehiclesGreen());
@@ -24,7 +25,7 @@ public class VehiclesEnabled extends State {
 	}
 
 	@Override
-	String name() {
+	public String name() {
 		return "VEHICLES ENABLED";
 	}
 }

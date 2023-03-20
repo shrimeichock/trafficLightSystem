@@ -17,9 +17,10 @@ public class VehiclesGreen extends State {
 		//set ispedestrianwaiting to false
 		//run timer for 10 seconds and call timeout
 
-		System.out.println("\n" + wrapper.getCurrentState().name());
+		//System.out.println("\n" + wrapper.getCurrentState().name());
+		wrapper.printState();
 		wrapper.signalVehicles(VehicleLight.GREEN);
-		wrapper.setPedestrianWaiting(false);
+		//wrapper.setPedestrianWaiting(false);
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
@@ -48,7 +49,7 @@ public class VehiclesGreen extends State {
 	}
 
 	@Override
-	String name() {
+	public String name() {
 		return "VEHICLES GREEN";
 	}
 }
