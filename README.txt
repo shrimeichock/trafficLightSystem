@@ -1,0 +1,5 @@
+- If pedestrian clicks button during FLASHING state and doesn't walk across (since it is technically against the law), the button click will not be held for the next GREEN state -> FIXED
+- Should count down numbers for pedestrians so they know how long they have to cross
+- set/kill timer methods are unecessary. A timer by definition counts down on its own. The 'start' and 'stop' is only required for stopwatches
+- The given state machine does not show how Pedestrian_waiting events during yellow or pedestrian_enabled states should be handled (i.e. should we add to the counter if someone clicks the button during the flashing state so they have more time to cross?)
+- Should leave some overlap where both the vehicle lights are red and pedestrians can't walk to allow those crossing to finish. For safety
