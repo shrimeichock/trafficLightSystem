@@ -1,7 +1,4 @@
-package stateMachine.States;
-
-import stateMachine.Context;
-import stateMachine.VehicleLight;
+package stateMachine;
 
 public class PedestriansEnabled extends State {
     @Override

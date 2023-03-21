@@ -1,7 +1,4 @@
-package stateMachine.States;
-
-import stateMachine.Context;
-import stateMachine.WalkLight;
+package stateMachine;
 
 public class PedestrianWalk extends State {
     @Override

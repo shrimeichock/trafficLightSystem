@@ -1,6 +1,4 @@
-package stateMachine.States;
-
-import stateMachine.Context;
+package stateMachine;
 
 public class VehiclesGreenInt extends State {
     @Override

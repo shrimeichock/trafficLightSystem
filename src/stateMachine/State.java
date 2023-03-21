@@ -1,4 +1,4 @@
-package stateMachine.States;
+package stateMachine;
 
 import stateMachine.Context;
 

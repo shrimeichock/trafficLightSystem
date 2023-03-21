@@ -1,9 +1,5 @@
 
-package stateMachine.States;
-
-import stateMachine.Context;
-
-import java.time.LocalTime;
+package stateMachine;
 
 /**
  * Initial state of traffic light

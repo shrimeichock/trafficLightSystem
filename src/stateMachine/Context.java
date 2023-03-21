@@ -1,8 +1,5 @@
 package stateMachine;
 
-import stateMachine.States.Operational;
-import stateMachine.States.State;
-
 import java.time.LocalTime;
 
 /**
@@ -83,4 +80,5 @@ public class Context implements Runnable{
         this.set_state(new Operational());
         this.currentState.stateActions(this);
     }
+
 }
