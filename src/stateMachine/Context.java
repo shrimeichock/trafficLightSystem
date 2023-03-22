@@ -14,8 +14,11 @@ public class Context implements Runnable{
     private int pedestrianFlashCtr;
     public Thread wrapper;
 
+    /**
+     * Set initial state to operational and start thread
+     */
     public Context() {
-        this.currentState = null;
+        this.currentState = new Operational();
         this.vehicleLight = null;
         this.walkLight = WalkLight.BLANK;
         this.isPedestrianWaiting = false;
@@ -25,60 +28,117 @@ public class Context implements Runnable{
         wrapper.start();
     }
 
-    public void set_state(State s) {
-        currentState = s;
-    }
-
+    /**
+     * get current state
+     * @return current state
+     */
     public State getCurrentState() {
-        return currentState;
+        return this.currentState;
     }
 
+    /**
+     * Update current state and call state actions
+     * @param s
+     */
+    public void set_state(State s) {
+        this.currentState = s;
+        this.currentState.stateActions(this);
+    }
+
+    /**
+     * Print current state with time to console
+     */
     public void printState(){System.out.println("[" + LocalTime.now() + "] " + this.currentState.name());}
 
+    /**
+     * Get pedestrian flash counter
+     * @return flash counter
+     */
     public int getPedestrianFlashCtr() {
         return pedestrianFlashCtr;
     }
 
+    /**
+     * Update pedestrian flash counter
+     * @param pedestrianFlashCtr
+     */
     public void setPedestrianFlashCtr(int pedestrianFlashCtr) {
         this.pedestrianFlashCtr = pedestrianFlashCtr;
     }
 
-    public void setPedestrianWaiting(boolean pedestrianWaiting) {
-        isPedestrianWaiting = pedestrianWaiting;
-        if (pedestrianWaiting){
-            System.out.println("Pedestrians are waiting");
-        } else {
-            System.out.println("No pedestrians waiting");
-        }
-    }
-
+    /**
+     * Check if pedestrian is waiting or not
+     * @return true or false
+     */
     public boolean isPedestrianWaiting() {
         return isPedestrianWaiting;
     }
 
-    public void timeout() {
-        currentState.timeout(this);
-    }
-	
-	public void pedestrianWaiting() {
-        currentState.pedestrianWaiting(this);
+    /**
+     * Set pedestrian waiting to true or false
+     * @param pedestrianWaiting
+     */
+    public void setPedestrianWaiting(boolean pedestrianWaiting) {
+        isPedestrianWaiting = pedestrianWaiting;
+        if (pedestrianWaiting){
+            System.out.println("  * Pedestrians are waiting");
+        }
     }
 
+    /**
+     * Change vehicle light
+     * @param vehicleLight
+     */
     public void signalVehicles(VehicleLight vehicleLight) {
         this.vehicleLight = vehicleLight;
         System.out.println(this.vehicleLight.getColour() + "Vehicle light: " + vehicleLight + VehicleLight.reset);
     }
 
+    /**
+     * Change pedestrian symbol
+     * @param walkLight
+     */
     public void signalPedestrians(WalkLight walkLight) {
         this.walkLight = walkLight;
         System.out.println(this.walkLight.getColour() + "Pedestrian signal: " + walkLight + WalkLight.reset);
     }
 
+    /**
+     * get current pedestrian symbol
+     * @return walking symbol
+     */
+    public WalkLight getWalkLight() {
+        return walkLight;
+    }
+
+    /**
+     * get current vehicle light
+     * @return vehicle light
+     */
+    public VehicleLight getVehicleLight() {
+        return vehicleLight;
+    }
+
+    /**
+     * Call timeout operation of current state
+     */
+    public void timeout() {
+        currentState.timeout(this);
+    }
+
+    /**
+     * Pedestrian clicks waiting button in current state
+     */
+	public void pedestrianWaiting() {
+        currentState.pedestrianWaiting(this);
+    }
+
+    /**
+     * Start system
+     */
     @Override
     public void run() {
         System.out.println("|| Starting traffic light system ||");
-        this.set_state(new Operational());
         this.currentState.stateActions(this);
     }
-
 }

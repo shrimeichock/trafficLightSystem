@@ -29,7 +29,7 @@ public class VehiclesYellow extends State {
     public void timeout(Context wrapper) {
         //move to pedestrians enabled state
         wrapper.set_state(new PedestriansEnabled());
-        wrapper.getCurrentState().stateActions(wrapper);
+        //wrapper.getCurrentState().stateActions(wrapper);
     }
 
     @Override

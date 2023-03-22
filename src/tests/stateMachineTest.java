@@ -4,7 +4,11 @@ package tests;
 import org.junit.jupiter.api.Test;
 
 import stateMachine.Context;
+import stateMachine.VehicleLight;
+import stateMachine.VehiclesGreenInt;
+import stateMachine.WalkLight;
 
+import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,15 +20,15 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class stateMachineTest {
 
-	private static Context context;
-	//TODO another test where it is spaced out (goes to Green Int)
+
+	//TODO test where we check that eac state is traversed and entry actions are correct
 
 	/**
 	 * Click 'Pedestrian waiting' button repeatedly with 5 second delays. Skips VEHICLE GREEN INT state
 	 */
 	@Test
 	void test() throws InterruptedException {
-		context = new Context();
+		Context context = new Context();
 		for(int i=0; i<15; i++){
 			Thread.sleep(5000);
 			System.out.printf("-----PEDESTRIAN INPUT[%d]-----%n", i);
@@ -32,27 +36,68 @@ class stateMachineTest {
 		}
 	}
 
+	//TODO another test where it is spaced out (goes to Green Int)
 	/**
-	 * Check that traffic lights move through initial states
+	 * Check that if pedestrian waiting after first 10 seconds of GREEN, moves to GREEN_INT
+	 */
+	@Test
+	void testWaitingGreenInt() throws InterruptedException {
+		Context context = new Context();
+		Thread.sleep(5000);
+		assertEquals("VEHICLES GREEN", context.getCurrentState().name());
+		Thread.sleep(10000);
+		assertEquals("VEHICLES GREEN INT", context.getCurrentState().name());
+		assertFalse(context.isPedestrianWaiting());
+	}
+
+	/**
+	 * Check that initial states are traversed
 	 */
 	@Test
 	void testInitialStates() throws InterruptedException {
-		context = new Context();
+		Context context = new Context();
 		Thread.sleep(1);
 		assertEquals("OPERATIONAL", context.getCurrentState().name());
-		Thread.sleep(1);
+		Thread.sleep(9);
 		assertEquals("VEHICLES ENABLED", context.getCurrentState().name());
 		Thread.sleep(5);
 		assertEquals("VEHICLES GREEN", context.getCurrentState().name());
+//		//assertEquals(VehicleLight.GREEN, context.getVehicleLight());
+//		//assertFalse(context.isPedestrianWaiting());
+//		//context.pedestrianWaiting();
+//		//assertTrue(context.isPedestrianWaiting());
+//		Thread.sleep(11000);
+//
+//		assertEquals("VEHICLES GREEN INT", context.getCurrentState().name());
+//		context.pedestrianWaiting();
+//		Thread.sleep(10);
+//		System.out.println("PASSED GREEN INT---------------");
+//
+//		assertEquals("VEHICLES YELLOW", context.getCurrentState().name());
+//		//assertEquals(VehicleLight.YELLOW, context.getVehicleLight());
+//		Thread.sleep(3000);
+//		System.out.println("PASSED YELLOW ---------------");
+//
+//		assertEquals("PEDESTRIANS ENABLED", context.getCurrentState().name());
+//		//assertEquals(VehicleLight.RED, context.getVehicleLight());
+//		Thread.sleep(10);
+//
+//		assertEquals("PEDESTRIANS WALK", context.getCurrentState().name());
+//		//assertEquals(WalkLight.WALK, context.getVehicleLight());
+//		Thread.sleep(15000);
+//
+//		assertEquals("PEDESTRIANS FLASH", context.getCurrentState().name());
+//		Thread.sleep(10000);
+//
+//		assertEquals("VEHICLE GREEN", context.getCurrentState().name());
 	}
-
 
 	/**
 	 * Check that when pedestrian clicks button in PEDESTRIAN FLASH state, it holds the request until next GREEN LIGHT
 	 */
 	@Test
 	void testWaitingInFlash() throws InterruptedException {
-		context = new Context();
+		Context context = new Context();
 		Thread.sleep(50);
 		assertFalse(context.isPedestrianWaiting());
 		context.pedestrianWaiting();
@@ -75,5 +120,4 @@ class stateMachineTest {
 		assertEquals("VEHICLES YELLOW", context.getCurrentState().name());
 		assertFalse(context.isPedestrianWaiting());
 	}
-
 }

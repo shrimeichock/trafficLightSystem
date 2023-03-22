@@ -14,8 +14,9 @@ public class VehiclesGreenInt extends State {
 
     @Override
     public void pedestrianWaiting(Context wrapper) {
-        System.out.println("Pedestrian detected, going to yellow");
+        System.out.println("  * Pedestrian detected, going to yellow");
+        wrapper.setPedestrianWaiting(true);
         wrapper.set_state(new VehiclesYellow());
-        wrapper.getCurrentState().stateActions(wrapper);
+        //wrapper.getCurrentState().stateActions(wrapper);
     }
 }

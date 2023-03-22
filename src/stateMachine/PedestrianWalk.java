@@ -1,17 +1,16 @@
 package stateMachine;
 
 public class PedestrianWalk extends State {
-    @Override
-    public String name() {
-        return "PEDESTRIAN WALK";
-    }
 
+    /**
+     * state actions, set the signal to walk for 15 seconds
+     * @param wrapper
+     */
     @Override
     public void stateActions(Context wrapper) {
         //print name
         //set pedestrian signal to walk
         //set timer for 15 seconds & timeout
-        //System.out.println("\n" + wrapper.getCurrentState().name());
 
         wrapper.printState();
         wrapper.signalPedestrians(WalkLight.WALK);
@@ -24,15 +23,32 @@ public class PedestrianWalk extends State {
         wrapper.timeout();
     }
 
+    /**
+     * Change to flash state
+     * @param wrapper
+     */
     @Override
     public void timeout(Context wrapper) {
         //move to pedestrians flash state
         wrapper.set_state(new PedestriansFlash());
-        wrapper.getCurrentState().stateActions(wrapper);
+        //wrapper.getCurrentState().stateActions(wrapper);
     }
 
+    /**
+     * if pedestrian waiting is called, do nothing
+     * @param wrapper
+     */
     @Override
     public void pedestrianWaiting(Context wrapper) {
         //do nothing, already open for pedestrians
+    }
+
+    /**s
+     * State name
+     * @return name
+     */
+    @Override
+    public String name() {
+        return "PEDESTRIAN WALK";
     }
 }

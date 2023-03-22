@@ -1,6 +1,8 @@
 
 package stateMachine;
 
+import java.util.InvalidPropertiesFormatException;
+
 /**
  * Initial state of traffic light
  * @author meich
@@ -18,9 +20,12 @@ public class Operational extends State {
 
 		wrapper.printState();
 		wrapper.set_state(new VehiclesEnabled());
-		wrapper.getCurrentState().stateActions(wrapper);
 	}
 
+	/**
+	 * Name of state
+	 * @return name
+	 */
 	@Override
 	public String name() {
 		return "OPERATIONAL";

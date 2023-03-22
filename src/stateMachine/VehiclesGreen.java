@@ -7,6 +7,10 @@ package stateMachine;
  */
 public class VehiclesGreen extends State {
 
+	/**
+	 * state actions, set light to green for 10 seconds
+	 * @param wrapper
+	 */
 	@Override
 	public void stateActions(Context wrapper) {
 		//print state
@@ -14,29 +18,27 @@ public class VehiclesGreen extends State {
 		//set ispedestrianwaiting to false
 		//run timer for 10 seconds and call timeout
 
-		//System.out.println("\n" + wrapper.getCurrentState().name());
 		wrapper.printState();
 		wrapper.signalVehicles(VehicleLight.GREEN);
+		System.out.println("  * Light will stay GREEN for 10 seconds");
 		//wrapper.setPedestrianWaiting(false);
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Light was GREEN for 10 seconds");
 		wrapper.timeout();
 	}
 
 	@Override
 	public void timeout(Context wrapper) {
 		if(wrapper.isPedestrianWaiting()){
-			System.out.println("Pedestrian detected, change light to yellow");
+			System.out.println("  * Pedestrian detected, change light to yellow");
 			wrapper.set_state(new VehiclesYellow());
 		}else{
-			System.out.println("Timed out, no pedestrian waiting, continue green");
+			System.out.println("  * Timed out, no pedestrian waiting, continue green");
 			wrapper.set_state(new VehiclesGreenInt());
 		}
-		wrapper.getCurrentState().stateActions(wrapper);
 	}
 
 	@Override
